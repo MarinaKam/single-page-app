@@ -1,4 +1,4 @@
-import { ListItemType } from '../../models';
+import { Fork, ItemFork, ListItemType } from '../../models';
 import { api } from '../index';
 
 export const getAllByUser = (username: string): Promise<ListItemType[]> => {
@@ -9,8 +9,8 @@ export const getAllByUser = (username: string): Promise<ListItemType[]> => {
   });
 };
 
-export const getItem = (gistId: string): Promise<ListItemType> => {
-  return api.get<ListItemType>(`/gists/${gistId}`).then(({ data }) => {
+export const getItem = (gistId: string): Promise<ItemFork> => {
+  return api.get<ItemFork>(`/gists/${gistId}`).then(({ data }) => {
     return data;
   }).catch((data) => {
     throw data;

@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 import { getAllByUser, getItem } from '../../../api/list';
-import { ListItemType } from '../../../models';
+import { ItemFork, ListItemType } from '../../../models';
 
 export interface GlobalContextInterface {
   isFetched: boolean;
@@ -8,7 +8,7 @@ export interface GlobalContextInterface {
   error: string | null;
   itemError: string | null;
   list: ListItemType[];
-  itemData: ListItemType | null;
+  itemData: ItemFork | null;
   fetchList: (val: string) => void;
   fetchItem: (val: string) => void;
 }
@@ -28,7 +28,7 @@ export const GlobalContext = createContext<GlobalContextInterface>(contextInitia
 
 export const GlobalProvider = ({ children }: any) => {
   const [ list, setList ] = useState<ListItemType[]>([]);
-  const [ itemData, setItemData ] = useState<ListItemType | null>(null);
+  const [ itemData, setItemData ] = useState<ItemFork | null>(null);
   const [ error, setError ] = useState<string | null>(null);
   const [ itemError, setItemError ] = useState<string | null>(null);
   const [ isFetched, setIsFetched ] = useState<boolean>(false);
@@ -58,7 +58,6 @@ export const GlobalProvider = ({ children }: any) => {
     setItemError(null);
 
     getItem(id).then((data) => {
-      console.log('data', data);
       if (!data?.id) {
         setItemError('No forks yet');
       }

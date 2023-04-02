@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Typography, Avatar, Chip, Stack, Link } from '@mui/material';
-import { ListItemType } from '../../../../models';
+import { ItemFork } from '../../../../models';
 
 type ItemDetailProps = {
-  itemData: ListItemType | null;
+  itemData: ItemFork | null;
 };
 
 export const ItemDetail: FC<ItemDetailProps> = ({ itemData = {} }) => {
@@ -35,10 +35,10 @@ export const ItemDetail: FC<ItemDetailProps> = ({ itemData = {} }) => {
         ) : forks?.map((fork) => (
           <Chip
             component="a"
-            href={`https://gist.github.com/${fork.id}`}
+            href={fork?.user?.html_url}
             target="_blank"
-            avatar={<Avatar alt={fork.user.login} src={fork.user.avatar_url} />}
-            label={fork.user.login}
+            avatar={<Avatar alt={fork?.user?.login} src={fork?.user?.avatar_url} />}
+            label={fork?.user?.login}
             variant="outlined"
           />
         ))}
