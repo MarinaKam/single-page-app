@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+## Test project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React Single Page Application demo that uses Github Gist API to show all public gists for an user.
 
-## Available Scripts
+### Description
 
-In the project directory, you can run:
+ReactJS Single Page App demo which has the following features:
 
-### `npm start`
+1. Search: When a user enters a username, it should be able to get a full list of public Gists by that user.
+2. Filetype: Convert the filetypes of the files in the gist into a tag/badge, (e.g, if the returned gist has list of files containing python and javascript files, the gist should have the respective tags/badges).
+3. Fork: Username/Avatar of the last 3 users who forked it with avatar linking to the fork.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Libraries used
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* create-react-app --template typescript
+* styles - Material UI
+* for api calls axios
+* lint settings
 
-### `npm test`
+### Getting Started and Installing
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### `npm run build`
+* first Git clone the repo into your computer
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`git clone https://github.com/MarinaKam/single-page-app.git`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* open your terminal
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`cd single-page-app`
 
-### `npm run eject`
+`npm i`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* This should install all the dependencies. Once done 
+* Run
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+`npm start`

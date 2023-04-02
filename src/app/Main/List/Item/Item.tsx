@@ -12,7 +12,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Files, ListItemType } from '../../../../models';
 import { GlobalContext } from '../../GlobalProvider';
-import { Loader } from '../../../../components/loader';
+import { Loader } from '../../../../components/Loader';
 import { ItemDetail } from './ItemDetail';
 
 type ItemProps = {

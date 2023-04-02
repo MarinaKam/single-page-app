@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react';
 import { Alert, Box, Container, AppBar, Toolbar } from '@mui/material';
 import { SearchBar } from '../../components/SearchBar';
-import { Loader } from '../../components/loader';
+import { Loader } from '../../components/Loader';
 import { GlobalContext } from './GlobalProvider';
 import { List } from './List';
 
