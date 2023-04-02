@@ -2,7 +2,6 @@ body, html, :root, #root {
   margin: 0;
   padding: 0;
   position: relative;
-  overflow: hidden;
   height: 100%;
   width: 100%;
 }
@@ -18,10 +17,6 @@ body, html, :root, #root {
 img {
   max-width: 100%;
   vertical-align: top;
-}
-
-body {
-  overflow: hidden;
 }
 
 table {

@@ -20,7 +20,7 @@ export interface ListItemType {
 }
 
 export interface Files {
-  "steam_quick_queue.user.js": SteamQuickQueueUserJs
+  [key: string]: SteamQuickQueueUserJs
 }
 
 export interface SteamQuickQueueUserJs {
