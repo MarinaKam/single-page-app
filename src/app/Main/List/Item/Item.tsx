@@ -1,4 +1,4 @@
-import { Dispatch, FC, SyntheticEvent, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, FC, SyntheticEvent, SetStateAction, useEffect, useState, useContext } from 'react';
 import {
   Box,
   Link,
@@ -7,10 +7,13 @@ import {
   Accordion,
   Typography,
   AccordionSummary,
-  AccordionDetails
+  AccordionDetails, Alert,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Files, ListItemType } from '../../../../models';
+import { GlobalContext } from '../../GlobalProvider';
+import { Loader } from '../../../../components/loader';
+import { ItemDetail } from './ItemDetail';
 
 type ItemProps = {
   item: ListItemType;
@@ -19,11 +22,13 @@ type ItemProps = {
 };
 
 export const Item: FC<ItemProps> = ({ expanded, item, onChange }) => {
+  const { isItemFetched, itemData, itemError, fetchItem } = useContext(GlobalContext);
   const numberFiles = Object.keys(item?.files || {}).length;
   const [ tags, setTags ] = useState<string[]>([]);
 
   const handleChange =
     (panel: string) => (event: SyntheticEvent, isExpanded: boolean) => {
+      fetchItem(item.id);
       onChange(isExpanded ? panel : false);
     };
 
@@ -50,14 +55,14 @@ export const Item: FC<ItemProps> = ({ expanded, item, onChange }) => {
               {item.description || 'No Description'}
             </Typography>
 
-            <Typography color="primary" sx={{ mx: 1 }}>
+            <Typography color="textSecondary" sx={{ mx: 1 }}>
               {numberFiles} {numberFiles > 1 ? 'Files' : 'File'}
             </Typography>
           </Box>
 
           <Stack direction="row" spacing={1} sx={{ pt: 0.5 }}>
             {tags?.map((item) => (
-              <Chip key={item} label={item} color="primary" size="small" variant="outlined" />
+              <Chip key={item} label={item} color="success" size="small" variant="outlined" />
             ))}
           </Stack>
 
@@ -66,7 +71,7 @@ export const Item: FC<ItemProps> = ({ expanded, item, onChange }) => {
               <Typography
                 key={item.raw_url}
                 component={Link}
-                color="textSecondary"
+                color="primary"
                 underline="hover"
                 href={item.raw_url}
                 target="_blank"
@@ -82,10 +87,16 @@ export const Item: FC<ItemProps> = ({ expanded, item, onChange }) => {
       </AccordionSummary>
 
       <AccordionDetails>
-        <Typography>
-          Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-          Aliquam eget maximus est, id dignissim quam.
-        </Typography>
+        <Loader
+          loading={isItemFetched}
+          render={() => !!itemError ? (
+            <Box width="100%" py={3}>
+              <Alert severity="error">{itemError}</Alert>
+            </Box>
+          ) : (
+            <ItemDetail itemData={itemData} />
+          )}
+        />
       </AccordionDetails>
     </Accordion>
   );

@@ -1,27 +1,38 @@
 import { createContext, useState } from 'react';
-import { getAllByUser } from '../../../api/list';
+import { getAllByUser, getItem } from '../../../api/list';
 import { ListItemType } from '../../../models';
 
 export interface GlobalContextInterface {
   isFetched: boolean;
+  isItemFetched: boolean;
   error: string | null;
+  itemError: string | null;
   list: ListItemType[];
+  itemData: ListItemType | null;
   fetchList: (val: string) => void;
+  fetchItem: (val: string) => void;
 }
 
 export const contextInitialValues = {
   isFetched: false,
+  isItemFetched: false,
   error: null,
+  itemError: null,
   list: [],
-  fetchList: () => {}
+  itemData: null,
+  fetchList: () => {},
+  fetchItem: () => {}
 };
 
 export const GlobalContext = createContext<GlobalContextInterface>(contextInitialValues);
 
 export const GlobalProvider = ({ children }: any) => {
   const [ list, setList ] = useState<ListItemType[]>([]);
+  const [ itemData, setItemData ] = useState<ListItemType | null>(null);
   const [ error, setError ] = useState<string | null>(null);
+  const [ itemError, setItemError ] = useState<string | null>(null);
   const [ isFetched, setIsFetched ] = useState<boolean>(false);
+  const [ isItemFetched, setIsItemFetched ] = useState<boolean>(false);
 
   const fetchList = (username: string) => {
     setIsFetched(true);
@@ -42,13 +53,37 @@ export const GlobalProvider = ({ children }: any) => {
     });
   };
 
+  const fetchItem = (id: string) => {
+    setIsItemFetched(true);
+    setItemError(null);
+
+    getItem(id).then((data) => {
+      console.log('data', data);
+      if (!data?.id) {
+        setItemError('No forks yet');
+      }
+
+      setItemData(data);
+      setIsItemFetched(false);
+    }).catch((error) => {
+      if (error) {
+        setItemError('Something went wrong, try again later');
+        setIsItemFetched(false);
+      }
+    });
+  };
+
   const value = {
     isFetched,
+    isItemFetched,
     error,
     list,
+    itemData,
+    itemError,
 
     // functions
-    fetchList
+    fetchList,
+    fetchItem
   };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
