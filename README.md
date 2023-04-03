@@ -21,17 +21,34 @@ ReactJS Single Page App demo which has the following features:
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-* first Git clone the repo into your computer
+* First Git clone the repo into your computer
 
-`git clone https://github.com/MarinaKam/single-page-app.git`
+``` 
+git clone https://github.com/MarinaKam/single-page-app.git
+``` 
 
-* open your terminal
+* Open your terminal
 
-`cd single-page-app`
+``` 
+$ cd single-page-app
+$ npm i
+``` 
 
-`npm i`
+* Add `.env` file with this vars
+
+``` 
+REACT_APP_API_URL=https://api.github.com
+TEST_API_URL=https://test.com
+``` 
 
 * This should install all the dependencies. Once done 
-* Run
+* Run pr
 
-`npm start`
+``` 
+$ npm start
+``` 
+* Run tests
+
+``` 
+$ npm test
+``` 
