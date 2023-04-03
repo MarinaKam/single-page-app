@@ -16,8 +16,9 @@ export const SearchBar: FC<SearchBarProps> = ({ onChange }) => {
 
     if (value) {
       onChange(value.trim());
-      setValue(null);
     }
+
+    setValue(null);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,16 +28,18 @@ export const SearchBar: FC<SearchBarProps> = ({ onChange }) => {
   return (
     <Paper
       component="form"
+      data-testid="search-bar"
       sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%' }}
       onSubmit={handleSubmit}
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
+        data-testid="search-input"
         placeholder="Search By Username"
         inputProps={{ 'aria-label': 'search google maps' }}
         onChange={handleChange}
       />
-      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+      <IconButton data-testid="search-button" type="submit" sx={{ p: '10px' }} aria-label="search">
         <SearchIcon />
       </IconButton>
     </Paper>

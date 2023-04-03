@@ -26,7 +26,7 @@ export interface Files {
 export interface SteamQuickQueueUserJs {
   filename: string;
   type: string;
-  language: string;
+  language: string | null;
   raw_url: string;
   size: number;
 }

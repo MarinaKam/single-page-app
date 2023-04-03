@@ -34,7 +34,7 @@ export const Item: FC<ItemProps> = ({ expanded, item, onChange }) => {
 
   useEffect(() => {
     for (let file in item?.files) {
-      let language: string = item?.files?.[file].language;
+      let language: string | null = item?.files?.[file].language;
 
       if (language && tags?.indexOf(language) === -1) {
         setTags([ ...tags, language ]);
@@ -43,7 +43,7 @@ export const Item: FC<ItemProps> = ({ expanded, item, onChange }) => {
   }, []);
 
   return (
-    <Accordion expanded={expanded === item.url} onChange={handleChange(item.url)}>
+    <Accordion data-testid="list-item" expanded={expanded === item.url} onChange={handleChange(item.url)}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1bh-content"

@@ -8,7 +8,7 @@ export const List: FC = () => {
   const [expanded, setExpanded] = useState<string | false>(false);
 
   return (
-    <Box height="100%" width="100%" py={3} overflow="auto" px={0.25}>
+    <Box data-testid="list-wrapper" height="100%" width="100%" py={3} overflow="auto" px={0.25}>
       {list?.map((item) => (
         <Item
           key={item.url}
